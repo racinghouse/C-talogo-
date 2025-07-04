@@ -1,273 +1,671 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Racing House | Catálogo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
+  <meta charset="UTF-8">
+  <title>Racing House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: -1;
+    /* Variables CSS */
+    :root {
+      --primary-color: #FFD23F;
+      --secondary-color: #FFD23F;
+      --accent-color: #00D4FF;
+      --dark-bg: #0A0A0A;
+      --gradient-bg: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Orbitron', sans-serif;
-      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkUtj50P0GScGneCawnrsCB6c6zQ1EQ0pyQERf8V6RpDUGaHSFLWUFni9_Wmlyy1f_F7s&usqp=CAU');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: #FFD700;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: var(--dark-bg);
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 210, 63, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 210, 63, 0.1) 0%, transparent 50%);
       min-height: 100vh;
-      padding: 20px;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Animaciones */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 210, 63, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(255, 210, 63, 0.6); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .header {
       text-align: center;
-      margin: 0;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
     }
 
     h1 {
-      font-size: 2.5em;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: float 3s ease-in-out infinite;
+      letter-spacing: 2px;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 5px #000;
     }
 
-    p {
-      font-size: 1.2em;
-      max-width: 700px;
-      margin-bottom: 30px;
+    .subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Tarjeta principal */
+    .main-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px auto;
+      max-width: 900px;
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    .main-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+
+    .presentacion {
+      font-size: 1.1rem;
       line-height: 1.8;
-      text-shadow: 1px 1px 3px #000;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
     }
 
-    .catalog-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 90%;
-      max-width: 400px;
+    .presentacion strong {
+      color: var(--primary-color);
+      font-weight: 600;
     }
 
-    .catalog-btn {
-      background: #FFD700;
-      color: #000;
-      border: none;
-      padding: 15px;
-      font-size: 1.1em;
-      font-weight: 700;
+    /* Destacados modernos */
+    .destacado {
+      background: linear-gradient(135deg, var(--primary-color), #FF8E53);
+      color: white;
+      padding: 16px 32px;
       border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      margin: 25px auto;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
     }
 
-    .catalog-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #FFD700;
+    .destacado::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
     }
 
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      transition: transform 0.2s;
-      z-index: 1000;
+    .destacado:hover::before {
+      left: 100%;
     }
 
-    .whatsapp-float:hover {
-      transform: scale(1.1);
+    .destacado:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 210, 63, 0.4);
     }
 
-    .section {
-      max-width: 700px;
-      margin-top: 40px;
-      text-align: left;
-      background: rgba(0,0,0,0.4);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    /* Sección de Catálogos */
+    .catalog-section {
+      margin: 60px 0;
     }
 
-    .section h2 {
-      color: #FFD700;
-      margin-bottom: 15px;
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .catalog-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
       text-align: center;
-      text-shadow: 1px 1px 2px #000;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .section p {
+    .catalog-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 210, 63, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .catalog-card:hover::before {
+      left: 100%;
+    }
+
+    .catalog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary-color);
+    }
+
+    .catalog-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+      filter: drop-shadow(0 0 10px rgba(255, 210, 63, 0.5));
+    }
+
+    .catalog-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary-color);
       margin-bottom: 15px;
-      font-size: 1.1em;
-      color: #fff;
     }
 
-    .section ol {
-      padding-left: 20px;
-      color: #fff;
-      font-size: 1.1em;
+    .catalog-desc {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      margin-bottom: 25px;
     }
 
-    .commentbox {
-      max-width: 700px;
-      margin-top: 50px;
-      background: rgba(0,0,0,0.4);
+    .catalog-link {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--secondary-color), #FFE066);
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 210, 63, 0.3);
+    }
+
+    .catalog-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 210, 63, 0.4);
+      background: linear-gradient(135deg, #FFE066, var(--secondary-color));
+    }
+
+    /* Features grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .feature-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
       border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-      padding: 10px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
-    .mayorista-info {
-      background: rgba(0,0,0,0.5);
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary-color);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
+    /* Sección de Venta por Mayor */
+    .wholesale-section {
+      margin: 60px 0;
+    }
+
+    .wholesale-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px auto;
+      max-width: 900px;
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    .wholesale-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+
+    .wholesale-highlight {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-color), #FF8E53);
       color: white;
       padding: 20px;
-      margin-top: 30px;
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(255,215,0,0.5);
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3);
     }
 
-    .payment-icons {
+    .wholesale-offers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .offer-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 25px;
       display: flex;
+      align-items: center;
       gap: 15px;
-      justify-content: center;
-      margin-top: 10px;
-      flex-wrap: wrap;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
-    .payment-icons img {
+    .offer-item:hover {
+      background: rgba(255, 210, 63, 0.1);
+      border-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .offer-icon {
+      font-size: 2rem;
+      filter: drop-shadow(0 0 8px rgba(255, 210, 63, 0.5));
+    }
+
+    .offer-content h4 {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .offer-content p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .wholesale-cta {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .wholesale-btn {
+      background: linear-gradient(135deg, var(--accent-color), #0099CC);
+      color: white;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .wholesale-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.4);
+    }
+
+    /* Medios de pago modernos */
+    .payment-section {
+      margin: 60px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--accent-color);
+    }
+
+    .medios-pago {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px auto;
+    }
+
+    .payment-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .payment-card:hover {
+      transform: scale(1.05);
+      border-color: var(--primary-color);
+    }
+
+    .medios-pago img {
       width: 50px;
       height: 50px;
-      border-radius: 10px;
-      background: #fff;
-      padding: 5px;
+      object-fit: contain;
+      border-radius: 8px;
+      filter: brightness(1.1);
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
+    /* CTA Button */
+    .cta-button {
+      background: linear-gradient(135deg, var(--accent-color), #0099CC);
+      color: white;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 30px auto;
+      display: block;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.4);
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    /* Footer moderno */
+    footer {
+      margin-top: 80px;
+      padding: 40px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-card {
+        padding: 30px 20px;
+        margin: 20px 10px;
       }
-      p, .section p, .section ol {
-        font-size: 1em;
+      
+      .catalog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
-      .catalog-btn {
-        font-size: 1em;
-        padding: 12px;
+      
+      .catalog-card {
+        padding: 25px 20px;
       }
-      .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 26px;
+      
+      .features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .destacado {
+        padding: 14px 24px;
+        font-size: 1rem;
       }
     }
+
+    /* Efectos de partículas */
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { top: 20%; left: 80%; animation-delay: 1s; }
+    .particle:nth-child(3) { top: 80%; left: 20%; animation-delay: 2s; }
+    .particle:nth-child(4) { top: 60%; left: 90%; animation-delay: 3s; }
   </style>
 </head>
 <body>
+  <!-- Partículas decorativas -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
 
-  <h1>🏁 RACING HOUSE</h1>
+  <div class="container">
+    <header class="header">
+      <h1>RACING HOUSE</h1>
+      <p class="subtitle">Mirá nuestro catálogo y elegí tus prendas favoritas</p>
+    </header>
 
-  <p>
-    🔥 ¡Descubrí nuestras remeras y buzos exclusivos de autos y motos con estilo de carreras!<br><br>
-    ✅ Diseños únicos, 100% algodón premium.<br>
-    ✅ Talles para todas las edades: infantiles y adultos (XS a XXXXL).<br>
-    ✅ ¡Estampamos tu logo!<br><br>
-    🛒 Comprá directo desde el catálogo y recibí tu pedido en todo el país.<br>
-    💬 Más de <strong>500 personas ya confiaron en Racing House</strong> para llevar la pasión por los fierros a su ropa.<br><br>
-    <strong>🏁 ¡Vestite con actitud Racing!</strong><br>
-    📲 <strong>Escribinos ahora por WhatsApp</strong> y armamos juntos tu pedido ideal 🚀🚗🏁
-  </p>
+    <div class="main-card">
+      <div class="presentacion">
+        🔥 <strong>Descubrí nuestras remeras y buzos exclusivos</strong> de autos y motos con estilo de carreras.<br><br>
+        
+        ✅ <strong>Diseños únicos</strong>, en prendas de 100% algodón.<br>
+        ✅ <strong>Envíos a todo el país</strong> a través de Correo Argentino y Vía Cargo.<br>
+        ✅ <strong>Talles para todas las edades</strong>: infantiles y adultos (XS a XXXXL).<br>
+        ✅ <strong>¡Estampamos tu logo!</strong><br><br>
 
-  <div class="catalog-buttons">
-    <a class="catalog-btn" href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank">
-      <i class="fas fa-car"></i> Ver Remeras de Autos
-    </a>
-    <a class="catalog-btn" href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank">
-      <i class="fas fa-motorcycle"></i> Ver Remeras de Motos
-    </a>
-    <a class="catalog-btn" href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank">
-      <i class="fas fa-tshirt"></i> Ver Buzos de Autos y Motos
-    </a>
-    <a class="catalog-btn" href="https://drive.google.com/drive/folders/1l35WMzJpTA4AiP0VLeQo-6yhtfV6thGD" target="_blank">
-      <i class="fas fa-running"></i> Ver Buzos Estilo Deportivo
-    </a>
-  </div>
+        <div class="destacado">
+          🛒 Comprá vía WhatsApp y recibí tu pedido en todo el país
+        </div>
 
-  <!-- Venta Mayorista -->
-  <div class="mayorista-info">
-    <h2>🛒 VENTA X MAYOR</h2>
-    <p><strong>🎉 Compras que superen $150.000 tienen 5% de descuento.</strong></p>
-    <p><strong>PACK DE 10 remeras</strong>: estampadas adelante x $70.000 (talles XS al XL).<br>
-    <strong>BUZOS CON CAPUCHA</strong>: $19.000 (mínimo 4 unidades).<br>
-    <strong>BUZO CUELLO REDONDO</strong>: $16.000 (mínimo 6 unidades).</p>
-    <p><strong>Métodos de pago:</strong><br>
-      ✔️ Transferencia bancaria<br>
-      ✔️ Billeteras virtuales:
-    </p>
-    <div class="payment-icons">
-      <img src="https://seeklogo.com/images/M/mercado-pago-logo-8F35D69DC3-seeklogo.com.png" alt="Mercado Pago" title="Mercado Pago">
-      <img src="https://logowik.com/content/uploads/images/uala8441.logowik.com.webp" alt="Ualá" title="Ualá">
-      <img src="https://play-lh.googleusercontent.com/5ci5nbBAp1trT5zP25tJXoIPY8qPi1B9oSMXL6DK5hB9G2twN7z_aUkWQo1Xirac0XA" alt="Cuenta DNI" title="Cuenta DNI">
+        💬 <strong>Más de 500 personas</strong> ya confiaron en Racing House para llevar la pasión por los fierros a su ropa.
+
+        <a href="#" class="cta-button">
+          📲 ¡Escribinos por WhatsApp! 🚀
+        </a>
+      </div>
+    </div>
+
+    <!-- Sección de Catálogos -->
+    <div class="catalog-section">
+      <h2 class="section-title">Explorá Nuestros Catálogos</h2>
+      <div class="catalog-grid">
+        <div class="catalog-card">
+          <div class="catalog-icon">🏁</div>
+          <h3 class="catalog-title">Remeras de Autos</h3>
+          <p class="catalog-desc">Modelos 1/4 de milla - Picadas y mucho más</p>
+          <a href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank" class="catalog-link">Ver Remeras de Autos</a>
+        </div>
+        <div class="catalog-card">
+          <div class="catalog-icon">🏍️</div>
+          <h3 class="catalog-title">Remeras de Motos</h3>
+          <p class="catalog-desc">Desde Yamaha hasta Harley - Llevá tu marca favorita</p>
+          <a href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank" class="catalog-link">Ver Remeras de Motos</a>
+        </div>
+        <div class="catalog-card">
+          <div class="catalog-icon">🏎️</div>
+          <h3 class="catalog-title">Buzos Racing</h3>
+          <p class="catalog-desc">Con capucha y cuello redondo - Perfectos para el frío</p>
+          <a href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank" class="catalog-link">Ver Buzos de Autos y Motos</a>
+        </div>
+        <div class="catalog-card">
+          <div class="catalog-icon">🏎️</div>
+          <h3 class="catalog-title">Buzos Deportivos</h3>
+          <p class="catalog-desc">Estilo urbano y deportivo - Comodidad garantizada</p>
+          <a href="https://drive.google.com/drive/folders/1l35WMzJpTA4AiP0VLeQo-6yhtfV6thGD" target="_blank" class="catalog-link">Ver Buzos Deportivos</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Venta por Mayor -->
+    <div class="wholesale-section">
+      <h2 class="section-title">🛒 VENTA X MAYOR</h2>
+      <div class="wholesale-card">
+        <div class="wholesale-highlight">
+          <strong>🎉 Compras que superen $150.000 tienen 5% de descuento.</strong>
+        </div>
+        <div class="wholesale-offers">
+          <div class="offer-item">
+            <span class="offer-icon">📦</span>
+            <div class="offer-content">
+              <h4>PACK DE 10 REMERAS</h4>
+              <p>Estampadas adelante x $70.000 (talles XS al XL)</p>
+            </div>
+          </div>
+          <div class="offer-item">
+            <span class="offer-icon">🧥</span>
+            <div class="offer-content">
+              <h4>BUZOS CON CAPUCHA</h4>
+              <p>$19.000 (mínimo 4 unidades)</p>
+            </div>
+          </div>
+          <div class="offer-item">
+            <span class="offer-icon">🏷️</span>
+            <div class="offer-content">
+              <h4>PACK MIXTO</h4>
+              <p>5 remeras + 3 buzos x $95.000</p>
+            </div>
+          </div>
+          <div class="offer-item">
+            <span class="offer-icon">🎯</span>
+            <div class="offer-content">
+              <h4>PERSONALIZÁ TU PEDIDO</h4>
+              <p>Logos propios desde 10 unidades</p>
+            </div>
+          </div>
+        </div>
+        <div class="wholesale-cta">
+          <a href="#" class="wholesale-btn">💼 Consultá por Venta Mayorista</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-section">
+      <h2 class="section-title">Medios de Pago</h2>
+      <div class="medios-pago">
+        <div class="payment-card">
+          <img src="https://play-lh.googleusercontent.com/EksZavQfabEH5CixFe-MqjT_9fuaBUU7CmR127KkGh9jlEtdIDHhc6L9u2xAYPlnVt8=w240-h480-rw" alt="MercadoPago">
+        </div>
+        <div class="payment-card">
+          <img src="https://media.tycsports.com/files/2023/01/13/524188/cuenta-dni.webp" alt="Cuenta DNI">
+        </div>
+        <div class="payment-card">
+          <img src="https://pbs.twimg.com/profile_images/1609933607006519297/JfQLdV9q_400x400.jpg" alt="Ualá">
+        </div>
+        <div class="payment-card">
+          <img src="https://play-lh.googleusercontent.com/uxHZbrC3ReVDRMOAJuugukR4qlIFt1H3ho8L_67cYhLh9G_P0kUPAJtfX6L22hAxfHv4" alt="Modo">
+        </div>
+        <div class="payment-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZqkB4fcmuwDTkr6vhoHXjQADZ-ra85PcYkE7Om8F_4-zxcxp6Dopo7w2ENlRTXuONS3E&usqp=CAU" alt="Tarjetas">
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Testimonios -->
-  <section class="section">
-    <h2>🙌 Opiniones reales</h2>
-    <p>"Excelente calidad, llegó rapidísimo. ¡Mi hijo está feliz con su buzo!"<br><strong>- Laura G.</strong></p>
-    <p>"Les mandé mi diseño y lo estamparon perfecto. ¡Volvería a comprar!"<br><strong>- Cristian P.</strong></p>
-  </section>
-
-  <!-- Cómo comprar -->
-  <section class="section">
-    <h2>🛒 ¿Cómo comprar?</h2>
-    <ol>
-      <li>Elegí el producto desde el catálogo.</li>
-      <li>Hablá con nosotros por WhatsApp.</li>
-      <li>Coordinamos talle, diseño y envío.</li>
-      <li>¡Lo recibís en 3 a 7 días hábiles!</li>
-    </ol>
-  </section>
-
-  <!-- Comentarios -->
-  <div class="commentbox"></div>
-
-  <!-- WhatsApp flotante -->
-  <div class="whatsapp-float" onclick="openWhatsApp()" aria-label="Contactar por WhatsApp">
-    <i class="fab fa-whatsapp" aria-hidden="true"></i>
-  </div>
-
-  <script>
-    function openWhatsApp() {
-      const message = "Hola, quiero realizar una consulta sobre sus prendas. 🏁🚀🚗";
-      const url = `https://wa.me/5491141796952?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-  </script>
-
-  <!-- Comentarios externos -->
-  <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-  <script>
-    commentBox('tu-id-unico'); // Reemplazá con tu ID real
-  </script>
-
+  <footer>
+    <p>© 2025 Racing House - Todos los derechos reservados.</p>
+    <p>Llevá la pasión por los fierros a tu estilo 🏁</p>
+  </footer>
 </body>
 </html>
