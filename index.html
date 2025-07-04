@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Racing House | Catálogo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #000;
+            color: #FFD700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        .catalog-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 90%;
+            max-width: 400px;
+        }
+        .catalog-btn {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .catalog-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #FFD700;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+            z-index: 1000;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>🏁 Racing House</h1>
+    <p>
+        Catálogo de remeras y buzos de autos y motos, estilo carreras.<br>
+        <strong>Remeras con talles infantiles y adultos (XS, S, M, L, XL, XXL, XXXL, XXXXL).</strong><br>
+        <strong>Buzos en XS, S, M, L, XL, XXL, XXXL.</strong><br>
+        Prendas 100% algodón.<br>
+        Si tenés tu logo, lo estampamos en la prenda perfecta.
+    </p>
+
+    <div class="catalog-buttons">
+        <a class="catalog-btn" href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank">
+            <i class="fas fa-car"></i> Ver Remeras de Autos
+        </a>
+        <a class="catalog-btn" href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank">
+            <i class="fas fa-motorcycle"></i> Ver Remeras de Motos
+        </a>
+        <a class="catalog-btn" href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank">
+            <i class="fas fa-tshirt"></i> Ver Buzos de Autos y Motos
+        </a>
+        <a class="catalog-btn" href="https://drive.google.com/drive/folders/1l35WMzJpTA4AiP0VLeQo-6yhtfV6thGD" target="_blank">
+            <i class="fas fa-running"></i> Ver Buzos Estilo Deportivo
+        </a>
+    </div>
+
+    <div class="whatsapp-float" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <script>
+        function openWhatsApp() {
+            const message = "¡Hola! Quiero ver el catálogo de Racing House 🚀";
+            const url = `https://wa.me/5491141796952?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
