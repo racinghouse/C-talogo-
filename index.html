@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Racing House | Catálogo</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
   <style>
-    /* Overlay para mejorar contraste */
     body::before {
       content: '';
       position: fixed;
@@ -18,7 +18,7 @@
 
     body {
       font-family: 'Orbitron', sans-serif;
-      background-image: url('https://p4.wallpaperbetter.com/wallpaper/646/255/601/car-city-racing-vehicle-hd-wallpaper-preview.jpg');
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkUtj50P0GScGneCawnrsCB6c6zQ1EQ0pyQERf8V6RpDUGaHSFLWUFni9_Wmlyy1f_F7s&usqp=CAU');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -76,7 +76,6 @@
       box-shadow: 0 0 20px #FFD700;
     }
 
-    /* WhatsApp flotante */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -100,7 +99,6 @@
       transform: scale(1.1);
     }
 
-    /* Sección testimonios y pasos */
     .section {
       max-width: 700px;
       margin-top: 40px;
@@ -121,7 +119,6 @@
     .section p {
       margin-bottom: 15px;
       font-size: 1.1em;
-      text-shadow: none;
       color: #fff;
     }
 
@@ -131,7 +128,6 @@
       font-size: 1.1em;
     }
 
-    /* Comentarios */
     .commentbox {
       max-width: 700px;
       margin-top: 50px;
@@ -139,6 +135,31 @@
       border-radius: 15px;
       box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
       padding: 10px;
+    }
+
+    .mayorista-info {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255,215,0,0.5);
+    }
+
+    .payment-icons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .payment-icons img {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background: #fff;
+      padding: 5px;
     }
 
     @media (max-width: 600px) {
@@ -166,14 +187,11 @@
 
   <p>
     🔥 ¡Descubrí nuestras remeras y buzos exclusivos de autos y motos con estilo de carreras!<br><br>
-
     ✅ Diseños únicos, 100% algodón premium.<br>
     ✅ Talles para todas las edades: infantiles y adultos (XS a XXXXL).<br>
     ✅ ¡Estampamos tu logo!<br><br>
-
-    🛒 Comprá vía Whatsapp y recibí tu pedido en todo el país.<br>
+    🛒 Comprá directo desde el catálogo y recibí tu pedido en todo el país.<br>
     💬 Más de <strong>500 personas ya confiaron en Racing House</strong> para llevar la pasión por los fierros a su ropa.<br><br>
-
     <strong>🏁 ¡Vestite con actitud Racing!</strong><br>
     📲 <strong>Escribinos ahora por WhatsApp</strong> y armamos juntos tu pedido ideal 🚀🚗🏁
   </p>
@@ -193,15 +211,33 @@
     </a>
   </div>
 
+  <!-- Venta Mayorista -->
+  <div class="mayorista-info">
+    <h2>🛒 VENTA X MAYOR</h2>
+    <p><strong>🎉 Compras que superen $150.000 tienen 5% de descuento.</strong></p>
+    <p><strong>PACK DE 10 remeras</strong>: estampadas adelante x $70.000 (talles XS al XL).<br>
+    <strong>BUZOS CON CAPUCHA</strong>: $19.000 (mínimo 4 unidades).<br>
+    <strong>BUZO CUELLO REDONDO</strong>: $16.000 (mínimo 6 unidades).</p>
+    <p><strong>Métodos de pago:</strong><br>
+      ✔️ Transferencia bancaria<br>
+      ✔️ Billeteras virtuales:
+    </p>
+    <div class="payment-icons">
+      <img src="https://seeklogo.com/images/M/mercado-pago-logo-8F35D69DC3-seeklogo.com.png" alt="Mercado Pago" title="Mercado Pago">
+      <img src="https://logowik.com/content/uploads/images/uala8441.logowik.com.webp" alt="Ualá" title="Ualá">
+      <img src="https://play-lh.googleusercontent.com/5ci5nbBAp1trT5zP25tJXoIPY8qPi1B9oSMXL6DK5hB9G2twN7z_aUkWQo1Xirac0XA" alt="Cuenta DNI" title="Cuenta DNI">
+    </div>
+  </div>
+
   <!-- Testimonios -->
-  <section class="section" aria-label="Opiniones de clientes">
+  <section class="section">
     <h2>🙌 Opiniones reales</h2>
     <p>"Excelente calidad, llegó rapidísimo. ¡Mi hijo está feliz con su buzo!"<br><strong>- Laura G.</strong></p>
     <p>"Les mandé mi diseño y lo estamparon perfecto. ¡Volvería a comprar!"<br><strong>- Cristian P.</strong></p>
   </section>
 
   <!-- Cómo comprar -->
-  <section class="section" aria-label="Cómo comprar">
+  <section class="section">
     <h2>🛒 ¿Cómo comprar?</h2>
     <ol>
       <li>Elegí el producto desde el catálogo.</li>
@@ -211,8 +247,8 @@
     </ol>
   </section>
 
-  <!-- Caja de comentarios -->
-  <div class="commentbox" aria-label="Comentarios de clientes"></div>
+  <!-- Comentarios -->
+  <div class="commentbox"></div>
 
   <!-- WhatsApp flotante -->
   <div class="whatsapp-float" onclick="openWhatsApp()" aria-label="Contactar por WhatsApp">
@@ -221,16 +257,16 @@
 
   <script>
     function openWhatsApp() {
-      const message = "Hola, quiero realizar una consulta sobre sus prendas. 🏁🚀";
+      const message = "Hola, quiero realizar una consulta sobre sus prendas. 🏁🚀🚗";
       const url = `https://wa.me/5491141796952?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
   </script>
 
-  <!-- CommentBox.io script -->
+  <!-- Comentarios externos -->
   <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
   <script>
-    commentBox('tu-id-unico'); // Cambiá 'tu-id-unico' por tu ID real de CommentBox.io
+    commentBox('tu-id-unico'); // Reemplazá con tu ID real
   </script>
 
 </body>
