@@ -1,118 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Racing House | Catálogo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background: #000;
-            color: #FFD700;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin-bottom: 20px;
-        }
-        .catalog-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 90%;
-            max-width: 400px;
-        }
-        .catalog-btn {
-            background: #FFD700;
-            color: #000;
-            border: none;
-            padding: 15px;
-            font-size: 1.1em;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .catalog-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #FFD700;
-        }
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            transition: transform 0.2s;
-            z-index: 1000;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Racing House | Catálogo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Overlay para mejorar contraste */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-image: url('https://p4.wallpaperbetter.com/wallpaper/646/255/601/car-city-racing-vehicle-hd-wallpaper-preview.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #FFD700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin-bottom: 30px;
+      line-height: 1.8;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .catalog-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .catalog-btn {
+      background: #FFD700;
+      color: #000;
+      border: none;
+      padding: 15px;
+      font-size: 1.1em;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .catalog-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #FFD700;
+    }
+
+    /* WhatsApp flotante */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
+      z-index: 1000;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    /* Sección testimonios y pasos */
+    .section {
+      max-width: 700px;
+      margin-top: 40px;
+      text-align: left;
+      background: rgba(0,0,0,0.4);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    }
+
+    .section h2 {
+      color: #FFD700;
+      margin-bottom: 15px;
+      text-align: center;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .section p {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+      text-shadow: none;
+      color: #fff;
+    }
+
+    .section ol {
+      padding-left: 20px;
+      color: #fff;
+      font-size: 1.1em;
+    }
+
+    /* Comentarios */
+    .commentbox {
+      max-width: 700px;
+      margin-top: 50px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      padding: 10px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+      p, .section p, .section ol {
+        font-size: 1em;
+      }
+      .catalog-btn {
+        font-size: 1em;
+        padding: 12px;
+      }
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>🏁 Racing House</h1>
-    <p>
-        Catálogo de remeras y buzos de autos y motos, estilo carreras.<br>
-        <strong>Remeras con talles infantiles y adultos (XS, S, M, L, XL, XXL, XXXL, XXXXL).</strong><br>
-        <strong>Buzos en XS, S, M, L, XL, XXL, XXXL.</strong><br>
-        Prendas 100% algodón.<br>
-        Si tenés tu logo, lo estampamos en la prenda perfecta.
-    </p>
 
-    <div class="catalog-buttons">
-        <a class="catalog-btn" href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank">
-            <i class="fas fa-car"></i> Ver Remeras de Autos
-        </a>
-        <a class="catalog-btn" href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank">
-            <i class="fas fa-motorcycle"></i> Ver Remeras de Motos
-        </a>
-        <a class="catalog-btn" href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank">
-            <i class="fas fa-tshirt"></i> Ver Buzos de Autos y Motos
-        </a>
-        <a class="catalog-btn" href="https://drive.google.com/drive/folders/1l35WMzJpTA4AiP0VLeQo-6yhtfV6thGD" target="_blank">
-            <i class="fas fa-running"></i> Ver Buzos Estilo Deportivo
-        </a>
-    </div>
+  <h1>🏁 Racing House</h1>
 
-    <div class="whatsapp-float" onclick="openWhatsApp()">
-        <i class="fab fa-whatsapp"></i>
-    </div>
+  <p>
+    🔥 ¡Descubrí nuestras remeras y buzos exclusivos de autos y motos con estilo de carreras!<br><br>
 
-    <script>
-        function openWhatsApp() {
-            const message = "¡Hola! Quiero ver el catálogo de Racing House 🚀";
-            const url = `https://wa.me/5491141796952?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-    </script>
+    ✅ Diseños únicos, 100% algodón premium.<br>
+    ✅ Talles para todas las edades: infantiles y adultos (XS a XXXXL).<br>
+    ✅ ¡Estampamos tu logo o diseño sin costo adicional!<br><br>
+
+    🛒 Comprá directo desde el catálogo y recibí tu pedido en todo el país.<br>
+    💬 Más de <strong>500 personas ya confiaron en Racing House</strong> para llevar la pasión por los fierros a su ropa.<br><br>
+
+    <strong>🏁 ¡Vestite con actitud Racing!</strong><br>
+    📲 <strong>Escribinos ahora por WhatsApp</strong> y armamos juntos tu pedido ideal 🚀🚗🏁
+  </p>
+
+  <div class="catalog-buttons">
+    <a class="catalog-btn" href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank">
+      <i class="fas fa-car"></i> Ver Remeras de Autos
+    </a>
+    <a class="catalog-btn" href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank">
+      <i class="fas fa-motorcycle"></i> Ver Remeras de Motos
+    </a>
+    <a class="catalog-btn" href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank">
+      <i class="fas fa-tshirt"></i> Ver Buzos de Autos y Motos
+    </a>
+    <a class="catalog-btn" href="https://drive.google.com/drive/folders/1l35WMzJpTA4AiP0VLeQo-6yhtfV6thGD" target="_blank">
+      <i class="fas fa-running"></i> Ver Buzos Estilo Deportivo
+    </a>
+  </div>
+
+  <!-- Testimonios -->
+  <section class="section" aria-label="Opiniones de clientes">
+    <h2>🙌 Opiniones reales</h2>
+    <p>"Excelente calidad, llegó rapidísimo. ¡Mi hijo está feliz con su buzo!"<br><strong>- Laura G.</strong></p>
+    <p>"Les mandé mi diseño y lo estamparon perfecto. ¡Volvería a comprar!"<br><strong>- Cristian P.</strong></p>
+  </section>
+
+  <!-- Cómo comprar -->
+  <section class="section" aria-label="Cómo comprar">
+    <h2>🛒 ¿Cómo comprar?</h2>
+    <ol>
+      <li>Elegí el producto desde el catálogo.</li>
+      <li>Hablá con nosotros por WhatsApp.</li>
+      <li>Coordinamos talle, diseño y envío.</li>
+      <li>¡Lo recibís en 3 a 7 días hábiles!</li>
+    </ol>
+  </section>
+
+  <!-- Caja de comentarios -->
+  <div class="commentbox" aria-label="Comentarios de clientes"></div>
+
+  <!-- WhatsApp flotante -->
+  <div class="whatsapp-float" onclick="openWhatsApp()" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </div>
+
+  <script>
+    function openWhatsApp() {
+      const message = "Hola, quiero realizar una consulta sobre sus prendas. 🏁🚀🚗";
+      const url = `https://wa.me/5491141796952?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+
+  <!-- CommentBox.io script -->
+  <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+  <script>
+    commentBox('tu-id-unico'); // Cambiá 'tu-id-unico' por tu ID real de CommentBox.io
+  </script>
+
 </body>
 </html>
