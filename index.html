@@ -31,7 +31,7 @@
   <meta property="og:image:height" content="630">
   
   <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
   <style>
     /* Variables CSS */
@@ -45,7 +45,11 @@
       --glass-border: rgba(255, 255, 255, 0.2);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
 
     body {
       background: var(--dark-bg);
@@ -57,86 +61,477 @@
       font-family: 'Inter', sans-serif;
       color: white;
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
     /* Animaciones */
-    @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)} }
-    @keyframes glow { 0%,100%{box-shadow:0 0 20px rgba(255,210,63,.3)}50%{box-shadow:0 0 30px rgba(255,210,63,.6)} }
-    @keyframes slideIn { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+    @keyframes float { 
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes glow { 
+      0%, 100% { box-shadow: 0 0 20px rgba(255,210,63,.3); }
+      50% { box-shadow: 0 0 30px rgba(255,210,63,.6); }
+    }
+    
+    @keyframes slideIn { 
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    /* Nueva animación para el botón de WhatsApp */
+    @keyframes wiggle {
+      0% { transform: translateX(0) scale(1); }
+      15% { transform: translateX(-8px) scale(1.02); }
+      30% { transform: translateX(8px) scale(1.02); }
+      45% { transform: translateX(-6px) scale(1.01); }
+      60% { transform: translateX(6px) scale(1.01); }
+      75% { transform: translateX(-3px) scale(1); }
+      90% { transform: translateX(3px) scale(1); }
+      100% { transform: translateX(0) scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      25% { transform: translateY(-5px) scale(1.02); }
+      50% { transform: translateY(0) scale(1.01); }
+      75% { transform: translateY(-3px) scale(1.01); }
+    }
+
+    /* Contenedor principal */
+    .container { 
+      max-width: 100%;
+      margin: 0 auto; 
+      padding: 0 15px;
+    }
 
     /* Header */
-    .header { text-align:center; padding:60px 20px 40px; position:relative; }
-    h1 {
-      font-family:'Orbitron',sans-serif;
-      font-size:clamp(3rem,8vw,6rem);
-      font-weight:900;
-      background:linear-gradient(45deg,var(--primary-color),var(--secondary-color),var(--accent-color));
-      background-size:200% 200%;
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      animation:float 3s ease-in-out infinite;
-      margin-bottom:20px;
+    .header { 
+      text-align: center; 
+      padding: 40px 20px 30px; 
+      position: relative; 
     }
-    .subtitle { font-size:1.2rem; color:rgba(255,255,255,.7); font-weight:300; letter-spacing:3px; text-transform:uppercase; }
-
-    /* Contenedor */
-    .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+    
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 12vw, 4rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .subtitle { 
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      color: rgba(255,255,255,.7); 
+      font-weight: 300; 
+      letter-spacing: 2px; 
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 10px;
+    }
 
     /* Main card */
     .main-card {
-      background:var(--glass-bg); backdrop-filter:blur(20px);
-      border:1px solid var(--glass-border); border-radius:20px;
-      padding:40px; margin:40px auto; max-width:900px;
-      position:relative; overflow:hidden; animation:slideIn .8s ease-out;
+      background: var(--glass-bg); 
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border); 
+      border-radius: 20px;
+      padding: 25px; 
+      margin: 20px 10px; 
+      position: relative; 
+      overflow: hidden; 
+      animation: slideIn .8s ease-out;
     }
 
-    .presentacion { font-size:1.1rem; line-height:1.8; color:rgba(255,255,255,.9); }
-    .presentacion strong { color:var(--primary-color); }
+    .presentacion { 
+      font-size: clamp(1rem, 3.5vw, 1.1rem);
+      line-height: 1.8; 
+      color: rgba(255,255,255,.9);
+      text-align: center;
+    }
+    
+    .presentacion strong { 
+      color: var(--primary-color); 
+    }
 
     /* Destacado */
     .destacado {
-      background:linear-gradient(135deg,var(--primary-color),#FF8E53);
-      color:white; padding:16px 32px; border-radius:50px;
-      margin:25px auto; display:inline-block; font-weight:600;
+      background: linear-gradient(135deg, var(--primary-color), #FF8E53);
+      color: white; 
+      padding: 15px 25px; 
+      border-radius: 50px;
+      margin: 25px auto; 
+      display: block;
+      font-weight: 600;
+      text-align: center;
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      max-width: 100%;
     }
 
-    /* Botón WhatsApp */
+    /* Botón WhatsApp con animación mejorada */
     .cta-button {
-      background:linear-gradient(135deg,#25D366,#128C7E);
-      color:white; padding:20px 40px; border:none; border-radius:50px;
-      font-size:1.2rem; font-weight:600; margin:30px auto;
-      display:block; text-align:center; text-decoration:none;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white; 
+      padding: 18px 30px; 
+      border: none; 
+      border-radius: 50px;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      font-weight: 600; 
+      margin: 25px auto;
+      display: block; 
+      text-align: center; 
+      text-decoration: none;
+      transition: all 0.3s ease;
+      max-width: 100%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      
+      /* Aplicamos la animación wiggle que se repite continuamente */
+      animation: wiggle 2s ease-in-out infinite;
+      animation-delay: 1s; /* Empezar después de 1 segundo */
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      animation: bounce 0.6s ease infinite;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Botón de seguimiento especial */
+    .tracking-button {
+      background: linear-gradient(135deg, var(--primary-color), #FF8E53) !important;
+      color: #000 !important;
+      padding: 18px 30px !important;
+      border-radius: 50px !important;
+      text-decoration: none !important;
+      font-weight: 600 !important;
+      font-size: clamp(1rem, 4vw, 1.1rem) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      display: block !important;
+      text-align: center !important;
+      margin: 25px auto !important;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+      transition: all 0.3s ease !important;
+      max-width: 100% !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    .tracking-button:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 25px rgba(255, 210, 63, 0.4) !important;
+    }
+
+    /* Proceso de compra */
+    .process-steps {
+      margin: 30px 0;
+    }
+
+    .process-step {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .step-number {
+      background: linear-gradient(135deg, var(--primary-color), #FFE066);
+      color: #000;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      color: var(--primary-color);
+      font-size: clamp(1.1rem, 3.8vw, 1.3rem);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .step-content p {
+      color: rgba(255,255,255,0.8);
+      font-size: clamp(0.95rem, 3.2vw, 1.05rem);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .process-arrow {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin: 10px 0;
+    }
+
+    /* Responsive para proceso */
+    @media (max-width: 480px) {
+      .process-step {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .step-number {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+      
+      .process-arrow {
+        font-size: 1.5rem;
+      }
+    }
+    .section-title { 
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 600; 
+      text-align: center; 
+      margin-bottom: 25px; 
+      color: var(--primary-color);
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     /* Catálogo */
-    .catalog-section { margin:60px 0; }
-    .section-title { font-size:2rem; font-weight:600; text-align:center; margin-bottom:30px; color:var(--accent-color); }
-    .catalog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
-    .catalog-card {
-      background:var(--glass-bg); backdrop-filter:blur(15px);
-      border:1px solid var(--glass-border); border-radius:20px;
-      padding:30px; text-align:center; transition:.3s;
+    .catalog-section { 
+      margin: 40px 0; 
+      padding: 0 10px;
     }
-    .catalog-card:hover { transform:translateY(-8px); border-color:var(--primary-color); }
-    .catalog-title { font-size:1.4rem; font-weight:600; color:var(--primary-color); margin-bottom:15px; }
-    .catalog-link { display:inline-block; background:linear-gradient(135deg,var(--secondary-color),#FFE066); color:#000; padding:12px 24px; border-radius:25px; text-decoration:none; font-weight:600; }
+    
+    .catalog-grid { 
+      display: grid; 
+      grid-template-columns: 1fr;
+      gap: 20px; 
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .catalog-card {
+      background: var(--glass-bg); 
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border); 
+      border-radius: 20px;
+      padding: 25px; 
+      text-align: center; 
+      transition: all 0.3s ease;
+    }
+    
+    .catalog-card:hover { 
+      transform: translateY(-5px); 
+      border-color: var(--primary-color); 
+    }
+    
+    .catalog-title { 
+      font-size: clamp(1.2rem, 4vw, 1.4rem);
+      font-weight: 600; 
+      color: var(--primary-color); 
+      margin-bottom: 15px; 
+    }
+    
+    .catalog-link { 
+      display: inline-block; 
+      background: linear-gradient(135deg, var(--secondary-color), #FFE066); 
+      color: #000; 
+      padding: 12px 20px; 
+      border-radius: 25px; 
+      text-decoration: none; 
+      font-weight: 600;
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      transition: all 0.3s ease;
+    }
+
+    .catalog-link:hover {
+      transform: scale(1.05);
+    }
 
     /* Venta x mayor */
-    .wholesale-section { margin:60px 0; }
-    .wholesale-card { background:var(--glass-bg); padding:40px; border-radius:20px; }
-    .wholesale-highlight { text-align:center; background:linear-gradient(135deg,var(--primary-color),#FF8E53); color:white; padding:20px; border-radius:15px; margin-bottom:30px; }
-    .offer-item { background:rgba(255,255,255,.05); border-radius:15px; padding:25px; margin:10px 0; display:flex; gap:15px; }
+    .wholesale-section { 
+      margin: 40px 0; 
+      padding: 0 10px;
+    }
+    
+    .wholesale-card { 
+      background: var(--glass-bg); 
+      padding: 25px; 
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      text-align: center;
+    }
+    
+    .offer-item { 
+      background: rgba(255,255,255,.05); 
+      border-radius: 15px; 
+      padding: 20px; 
+      margin: 15px auto; 
+      display: flex; 
+      gap: 15px;
+      align-items: center;
+      text-align: left;
+      max-width: 400px;
+      justify-content: center;
+    }
 
-    .wholesale-btn { background:linear-gradient(135deg,var(--accent-color),#0099CC); color:white; padding:16px 32px; border-radius:50px; text-decoration:none; font-weight:600; }
+    .offer-item span {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .offer-item h4 {
+      font-size: clamp(1rem, 3.5vw, 1.1rem);
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+
+    .offer-item p {
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .wholesale-btn { 
+      background: linear-gradient(135deg, var(--accent-color), #0099CC); 
+      color: white; 
+      padding: 16px 30px; 
+      border-radius: 50px; 
+      text-decoration: none; 
+      font-weight: 600;
+      display: block;
+      text-align: center;
+      margin: 20px auto 0;
+      font-size: clamp(1rem, 3.5vw, 1.1rem);
+      transition: all 0.3s ease;
+    }
+
+    .wholesale-btn:hover {
+      transform: translateY(-3px);
+      animation: pulse 1s infinite;
+    }
 
     /* Medios de pago */
-    .payment-section { margin:60px 0; }
-    .medios-pago { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-    .payment-card { background:var(--glass-bg); padding:15px; border-radius:15px; transition:.3s; }
-    .payment-card img { width:50px; height:50px; object-fit:contain; }
+    .payment-section { 
+      margin: 40px 0; 
+      padding: 0 10px;
+    }
+    
+    .payment-section p {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: clamp(1rem, 3.5vw, 1.1rem);
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .medios-pago { 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 15px; 
+    }
+    
+    .payment-card { 
+      background: var(--glass-bg); 
+      padding: 15px; 
+      border-radius: 15px; 
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+    }
 
-    footer { margin-top:80px; padding:40px 20px; background:var(--glass-bg); text-align:center; font-size:.9rem; color:rgba(255,255,255,.6); }
+    .payment-card:hover {
+      transform: translateY(-3px);
+    }
+    
+    .payment-card img { 
+      width: 45px; 
+      height: 45px; 
+      object-fit: contain; 
+    }
+
+    /* Footer */
+    footer { 
+      margin-top: 60px; 
+      padding: 30px 20px; 
+      background: var(--glass-bg); 
+      text-align: center; 
+      font-size: clamp(0.8rem, 3vw, 0.9rem);
+      color: rgba(255,255,255,.6);
+      backdrop-filter: blur(10px);
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    /* Media Queries para tablets */
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 30px;
+      }
+
+      .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+      }
+
+      .main-card {
+        padding: 35px;
+        margin: 30px 20px;
+      }
+    }
+
+    /* Media Queries para desktop */
+    @media (min-width: 1024px) {
+      .container {
+        max-width: 1200px;
+        padding: 0 40px;
+      }
+
+      .catalog-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1000px;
+      }
+
+      .main-card {
+        padding: 40px;
+        margin: 40px auto;
+        max-width: 900px;
+      }
+
+      .wholesale-card {
+        padding: 35px;
+      }
+    }
+
+    /* Reducir animación en dispositivos con preferencia de movimiento reducido */
+    @media (prefers-reduced-motion: reduce) {
+      .cta-button {
+        animation: none;
+      }
+      
+      .cta-button:hover {
+        animation: none;
+        transform: translateY(-3px) scale(1.05);
+      }
+    }
   </style>
 </head>
 <body>
@@ -148,16 +543,23 @@
 
     <div class="main-card">
       <div class="presentacion">
-        🔥 <strong>Descubrí nuestras remeras y buzos exclusivos</strong> de autos y motos con estilo de carreras.<br><br>
-        ✅ <strong>Diseños únicos</strong>, en prendas de 100% algodón.<br>
-        ✅ <strong>Envíos a todo el país</strong> a través de Correo Argentino y Vía Cargo.<br>
-        ✅ <strong>Talles para todas las edades</strong>: infantiles y adultos (XS a XXXXL).<br>
-        ✅ <strong>¡Estampamos tu logo!</strong><br><br>
+        <div class="intro-text">
+          🔥 <strong>Descubrí nuestras remeras y buzos exclusivos</strong> de autos y motos con estilo de carreras.
+        </div>
+        
+        <div class="features-list">
+          <div class="feature-item">✅ <strong>Diseños únicos</strong>, en prendas de 100% algodón.</div>
+          <div class="feature-item">✅ <strong>Envíos a todo el país</strong> a través de Correo Argentino y Vía Cargo.</div>
+          <div class="feature-item">✅ <strong>Talles para todas las edades</strong>: infantiles y adultos (XS a XXXXL).</div>
+          <div class="feature-item">✅ <strong>¡Estampamos tu logo!</strong></div>
+        </div>
 
-        <div class="destacado">🛒 Comprá vía WhatsApp y recibí tu pedido en todo el país</div>
+        <a href="https://wa.me/5491141796952" target="_blank" class="destacado" style="text-decoration: none; cursor: pointer;">🛒 Comprá vía WhatsApp y recibí tu pedido en todo el país</a>
         💬 <strong>Más de 500 personas</strong> ya confiaron en Racing House.
         
         <a href="https://wa.me/5491141796952" target="_blank" class="cta-button">📲 ¡Hace click acá y escribinos por WhatsApp! 🚀</a>
+        
+        <a href="http://correoargentino.com.ar/formularios/e-commerce" target="_blank" class="tracking-button">📦 SEGUÍ TUS PRENDAS</a>
       </div>
     </div>
 
@@ -182,106 +584,58 @@
     <div class="wholesale-section">
       <h2 class="section-title">🛒 VENTA X MAYOR</h2>
       <div class="wholesale-card">
-        <div class="offer-item"><span>📦</span><div><h4>PACK DE 10 REMERAS</h4><p>x $100.000</p></div></div>
-        <div class="offer-item"><span>🧥</span><div><h4>BUZOS CON CAPUCHA</h4><p>$20.000- Compra min. 4 unidades</p></div></div>
-<div class="offer-item"><span>🧥</span><div><h4>BUZOS CUELLO REDONDO</h4><p>$18.000 - Compra min. 4 unidades</p></div></div>        <div class="offer-item"><span>🏷️</span><div><h4>PACK MIXTO</h4><p>5 remeras + 3 buzos x $110.000</p></div></div>
-        <div class="offer-item"><span>🎯</span><div><h4>PERSONALIZÁ TU PEDIDO</h4><p>Desde 10 unidades</p></div></div>
-        <div style="text-align:center; margin-top:20px;"><a href="https://wa.me/5491141796952" class="wholesale-btn">Consultá por Mayorista</a></div>
+        <div class="offer-item">
+          <span>📦</span>
+          <div>
+            <h4>PACK DE 10 REMERAS</h4>
+            <p>x $100.000</p>
+          </div>
+        </div>
+        <div class="offer-item">
+          <span>🧥</span>
+          <div>
+            <h4>BUZOS CON CAPUCHA</h4>
+            <p>$20.000 - Compra min. 4 unidades</p>
+          </div>
+        </div>
+        <div class="offer-item">
+          <span>🧥</span>
+          <div>
+            <h4>BUZOS CUELLO REDONDO</h4>
+            <p>$18.000 - Compra min. 4 unidades</p>
+          </div>
+        </div>        
+        <div class="offer-item">
+          <span>🏷️</span>
+          <div>
+            <h4>PACK MIXTO</h4>
+            <p>5 remeras + 3 buzos x $110.000</p>
+          </div>
+        </div>
+        <div class="offer-item">
+          <span>🎯</span>
+          <div>
+            <h4>PERSONALIZÁ TU PEDIDO</h4>
+            <p>Desde 10 unidades</p>
+          </div>
+        </div>
+        <a href="https://wa.me/5491141796952?text=¡Hola%20Racing%20House!%20👋%20Quiero%20consultar%20por:%0A%0A1️⃣%20*COMPRA%20INDIVIDUAL*%0A2️⃣%20*VENTA%20POR%20MAYOR*%0A3️⃣%20*ESTAMPADO%20PERSONALIZADO*%0A4️⃣%20*CONSULTA%20GENERAL*%0A%0A¿Podrían%20ayudarme%20con%20la%20opción%20que%20necesito?%20📦🛒" class="wholesale-btn">Consultá por Mayorista</a>
       </div>
     </div>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botón Final - Seguimiento</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* Variables CSS (las mismas que tu proyecto) */
-        :root {
-            --primary-color: #FFD23F;
-            --secondary-color: #FFD23F;
-            --accent-color: #00D4FF;
-            --dark-bg: #0A0A0A;
-        }
 
-        body {
-            background: var(--dark-bg);
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 210, 63, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(255, 210, 63, 0.1) 0%, transparent 50%);
-            min-height: 100vh;
-            font-family: 'Inter', sans-serif;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Animación pulse */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* El botón que elegiste */
-        .btn-seguimiento {
-            background: linear-gradient(135deg, var(--primary-color), #FF8E53);
-            border: none;
-            border-radius: 50px;
-            color: #000;
-            padding: 18px 40px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-block;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-seguimiento:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 210, 63, 0.4);
-            animation: pulse 1s infinite;
-        }
-
-        .btn-seguimiento:active {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(255, 210, 63, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .btn-seguimiento {
-                padding: 15px 30px;
-                font-size: 1rem;
-            }
-        }
-
-        .demo-text {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <a href="http://correoargentino.com.ar/formularios/e-commerce" class="btn-seguimiento" target="_blank">
-            SEGUÍ TUS PRENDAS
-        </a>
-    </div>
     <div class="payment-section">
       <h2 class="section-title">Medios de Pago</h2>
-      <p style="text-align:center">Efectivo y Transferencia bancaria</p>
+      <p>Efectivo y Transferencia bancaria</p>
       <div class="medios-pago">
-        <div class="payment-card"><img src="https://play-lh.googleusercontent.com/EksZavQfabEH5CixFe-MqjT_9fuaBUU7CmR127KkGh9jlEtdIDHhc6L9u2xAYPlnVt8=w240-h480-rw" alt="MercadoPago"></div>
-        <div class="payment-card"><img src="https://media.tycsports.com/files/2023/01/13/524188/cuenta-dni.webp" alt="Cuenta DNI"></div>
-        <div class="payment-card"><img src="https://pbs.twimg.com/profile_images/1609933607006519297/JfQLdV9q_400x400.jpg" alt="Ualá"></div>
+        <div class="payment-card">
+          <img src="https://play-lh.googleusercontent.com/EksZavQfabEH5CixFe-MqjT_9fuaBUU7CmR127KkGh9jlEtdIDHhc6L9u2xAYPlnVt8=w240-h480-rw" alt="MercadoPago">
+        </div>
+        <div class="payment-card">
+          <img src="https://media.tycsports.com/files/2023/01/13/524188/cuenta-dni.webp" alt="Cuenta DNI">
+        </div>
+        <div class="payment-card">
+          <img src="https://pbs.twimg.com/profile_images/1609933607006519297/JfQLdV9q_400x400.jpg" alt="Ualá">
+        </div>
       </div>
     </div>
   </div>
