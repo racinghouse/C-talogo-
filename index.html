@@ -32,8 +32,9 @@
   
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
   <style>
-    /* VARIABLES CSS */
+    /* Variables CSS */
     :root {
       --primary-color: #FFD23F;
       --secondary-color: #FFD23F;
@@ -44,16 +45,101 @@
       --glass-border: rgba(255, 255, 255, 0.2);
     }
 
-    /* ... EL CSS COMPLETO SIGUE IGUAL, SIN CAMBIOS ... */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--dark-bg);
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 210, 63, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 210, 63, 0.1) 0%, transparent 50%);
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Animaciones */
+    @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)} }
+    @keyframes glow { 0%,100%{box-shadow:0 0 20px rgba(255,210,63,.3)}50%{box-shadow:0 0 30px rgba(255,210,63,.6)} }
+    @keyframes slideIn { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+
+    /* Header */
+    .header { text-align:center; padding:60px 20px 40px; position:relative; }
+    h1 {
+      font-family:'Orbitron',sans-serif;
+      font-size:clamp(3rem,8vw,6rem);
+      font-weight:900;
+      background:linear-gradient(45deg,var(--primary-color),var(--secondary-color),var(--accent-color));
+      background-size:200% 200%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      animation:float 3s ease-in-out infinite;
+      margin-bottom:20px;
+    }
+    .subtitle { font-size:1.2rem; color:rgba(255,255,255,.7); font-weight:300; letter-spacing:3px; text-transform:uppercase; }
+
+    /* Contenedor */
+    .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+    /* Main card */
+    .main-card {
+      background:var(--glass-bg); backdrop-filter:blur(20px);
+      border:1px solid var(--glass-border); border-radius:20px;
+      padding:40px; margin:40px auto; max-width:900px;
+      position:relative; overflow:hidden; animation:slideIn .8s ease-out;
+    }
+
+    .presentacion { font-size:1.1rem; line-height:1.8; color:rgba(255,255,255,.9); }
+    .presentacion strong { color:var(--primary-color); }
+
+    /* Destacado */
+    .destacado {
+      background:linear-gradient(135deg,var(--primary-color),#FF8E53);
+      color:white; padding:16px 32px; border-radius:50px;
+      margin:25px auto; display:inline-block; font-weight:600;
+    }
+
+    /* Botón WhatsApp */
+    .cta-button {
+      background:linear-gradient(135deg,#25D366,#128C7E);
+      color:white; padding:20px 40px; border:none; border-radius:50px;
+      font-size:1.2rem; font-weight:600; margin:30px auto;
+      display:block; text-align:center; text-decoration:none;
+    }
+
+    /* Catálogo */
+    .catalog-section { margin:60px 0; }
+    .section-title { font-size:2rem; font-weight:600; text-align:center; margin-bottom:30px; color:var(--accent-color); }
+    .catalog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
+    .catalog-card {
+      background:var(--glass-bg); backdrop-filter:blur(15px);
+      border:1px solid var(--glass-border); border-radius:20px;
+      padding:30px; text-align:center; transition:.3s;
+    }
+    .catalog-card:hover { transform:translateY(-8px); border-color:var(--primary-color); }
+    .catalog-title { font-size:1.4rem; font-weight:600; color:var(--primary-color); margin-bottom:15px; }
+    .catalog-link { display:inline-block; background:linear-gradient(135deg,var(--secondary-color),#FFE066); color:#000; padding:12px 24px; border-radius:25px; text-decoration:none; font-weight:600; }
+
+    /* Venta x mayor */
+    .wholesale-section { margin:60px 0; }
+    .wholesale-card { background:var(--glass-bg); padding:40px; border-radius:20px; }
+    .wholesale-highlight { text-align:center; background:linear-gradient(135deg,var(--primary-color),#FF8E53); color:white; padding:20px; border-radius:15px; margin-bottom:30px; }
+    .offer-item { background:rgba(255,255,255,.05); border-radius:15px; padding:25px; margin:10px 0; display:flex; gap:15px; }
+
+    .wholesale-btn { background:linear-gradient(135deg,var(--accent-color),#0099CC); color:white; padding:16px 32px; border-radius:50px; text-decoration:none; font-weight:600; }
+
+    /* Medios de pago */
+    .payment-section { margin:60px 0; }
+    .medios-pago { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+    .payment-card { background:var(--glass-bg); padding:15px; border-radius:15px; transition:.3s; }
+    .payment-card img { width:50px; height:50px; object-fit:contain; }
+
+    footer { margin-top:80px; padding:40px 20px; background:var(--glass-bg); text-align:center; font-size:.9rem; color:rgba(255,255,255,.6); }
   </style>
 </head>
 <body>
-  <!-- Partículas decorativas -->
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-
   <div class="container">
     <header class="header">
       <h1>RACING HOUSE</h1>
@@ -63,134 +149,62 @@
     <div class="main-card">
       <div class="presentacion">
         🔥 <strong>Descubrí nuestras remeras y buzos exclusivos</strong> de autos y motos con estilo de carreras.<br><br>
-        
         ✅ <strong>Diseños únicos</strong>, en prendas de 100% algodón.<br>
         ✅ <strong>Envíos a todo el país</strong> a través de Correo Argentino y Vía Cargo.<br>
         ✅ <strong>Talles para todas las edades</strong>: infantiles y adultos (XS a XXXXL).<br>
         ✅ <strong>¡Estampamos tu logo!</strong><br><br>
 
-        <div class="destacado">
-          🛒 Comprá vía WhatsApp y recibí tu pedido en todo el país
-        </div>
+        <div class="destacado">🛒 Comprá vía WhatsApp y recibí tu pedido en todo el país</div>
+        💬 <strong>Más de 500 personas</strong> ya confiaron en Racing House.
         
-        <p style="text-align: center; margin: 25px 0; font-size: 1.1rem; line-height: 1.6;">
-        🔥 <strong>Desde 2021 creando las prendas fierreras que buscás.</strong> Más de 12.000 seguidores ya confiaron y confían en emprender con nosotros. Diseños exclusivos, calidad premium y la pasión por los fierros en cada estampa.
-        </p>
-        
-        <a href="https://wa.me/5491141796952?text=%C2%A1Hola!%20%F0%9F%91%8B%20Vengo%20desde%20la%20web%20de%20Racing%20House%20%F0%9F%8F%81%20Me%20interesa%3A%20%E2%98%90%20Ver%20cat%C3%A1logo%20completo%20%E2%98%90%20Consultar%20talles%20disponibles%20%E2%98%90%20Precio%20de%20%5BPRODUCTO%20ESPEC%C3%8DFICO%5D%20%E2%98%90%20Venta%20por%20mayor%20%E2%98%90%20Estampar%20mi%20logo%20%C2%A1Espero%20tu%20respuesta!%20%F0%9F%9A%80" target="_blank" class="cta-button">
-          📱 ¡ESCRIBINOS POR WHATSAPP AHORA! 🚀
-        </a>
-        
-        <p style="text-align: center; margin-top: 20px; color: rgba(255, 255, 255, 0.8); font-size: 1rem; line-height: 1.6;">
-          Estamos a tu disposición para cualquier consulta sobre nuestros productos, talles, envíos o para ayudarte a encontrar el diseño perfecto. ¡No dudes en contactarnos!
-        </p>
+        <a href="https://wa.me/5491141796952" target="_blank" class="cta-button">📲 ¡Hace click acá y escribinos por WhatsApp! 🚀</a>
       </div>
     </div>
 
-    <!-- SECCIÓN DE CATÁLOGOS -->
     <div class="catalog-section">
       <h2 class="section-title">Explorá Nuestros Catálogos</h2>
       <div class="catalog-grid">
         <div class="catalog-card">
-          <div class="catalog-icon">🏁</div>
           <h3 class="catalog-title">Remeras de Autos</h3>
-          <p class="catalog-desc">Modelos 1/4 de milla - Picadas y mucho más</p>
           <a href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank" class="catalog-link">Ver Remeras de Autos</a>
         </div>
         <div class="catalog-card">
-          <div class="catalog-icon">🏍️</div>
           <h3 class="catalog-title">Remeras de Motos</h3>
-          <p class="catalog-desc">Desde Yamaha hasta Harley - Llevá tu marca favorita</p>
           <a href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank" class="catalog-link">Ver Remeras de Motos</a>
         </div>
         <div class="catalog-card">
-          <div class="catalog-icon">🏎️</div>
           <h3 class="catalog-title">Buzos Racing</h3>
-          <p class="catalog-desc">Con capucha y cuello redondo - Perfectos para el frío</p>
-          <a href="https://drive.google.com/drive/folders/12y5oTpftkVI" target="_blank" class="catalog-link">Ver Buzos Racing</a>
+          <a href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank" class="catalog-link">Ver Buzos</a>
         </div>
       </div>
     </div>
 
-    <!-- Sección de Venta por Mayor -->
     <div class="wholesale-section">
       <h2 class="section-title">🛒 VENTA X MAYOR</h2>
       <div class="wholesale-card">
-        <div class="wholesale-highlight">
-          <strong>🎉 Compras que superen $150.000 tienen 5% de descuento.</strong>
-        </div>
-        <div class="wholesale-offers">
-          <div class="offer-item">
-            <span class="offer-icon">📦</span>
-            <div class="offer-content">
-              <h4>PACK DE 10 REMERAS</h4>
-              <p>Estampadas adelante x $70.000 (talles XS al XL)</p>
-            </div>
-          </div>
-          <div class="offer-item">
-            <span class="offer-icon">🧥</span>
-            <div class="offer-content">
-              <h4>BUZOS CON CAPUCHA</h4>
-              <p>$19.000 Talles XS-S-M-L-XL (mínimo 4 unidades)</p>
-            </div>
-          </div>
-          <div class="offer-item">
-            <span class="offer-icon">🏷️</span>
-            <div class="offer-content">
-              <h4>BUZOS CUELLO REDONDO</h4>
-              <p>$16,000 Talles del XS al XL (mínimo 6 unidades)</p>
-            </div>
-          </div>
-        </div>
-        <div class="offer-item">
-          <span class="offer-icon">🏷️</span>
-          <div class="offer-content">
-            <h4>PACK MIXTO</h4>
-            <p>5 remeras + 3 buzos x $95.000 (Talles del XS al XL)</p>
-          </div>
-        </div>
-        <div class="offer-item">
-          <span class="offer-icon">🎯</span>
-          <div class="offer-content">
-            <h4>PERSONALIZÁ TU PEDIDO</h4>
-            <p>Estampamos tu logo desde 10 unidades en las mejores prendas</p>
-          </div>
-        </div>
-        <div class="wholesale-cta">
-          <a href="https://wa.me/5491141796952" class="wholesale-btn">Consultá por Venta Mayorista</a>
-        </div>
+        <div class="wholesale-highlight"><strong>🎉 Compras que superen $150.000 tienen 5% de descuento.</strong></div>
+        <div class="offer-item"><span>📦</span><div><h4>PACK DE 10 REMERAS</h4><p>x $70.000</p></div></div>
+        <div class="offer-item"><span>🧥</span><div><h4>BUZOS CON CAPUCHA</h4><p>$19.000</p></div></div>
+        <div class="offer-item"><span>🏷️</span><div><h4>PACK MIXTO</h4><p>5 remeras + 3 buzos x $95.000</p></div></div>
+        <div class="offer-item"><span>🎯</span><div><h4>PERSONALIZÁ TU PEDIDO</h4><p>Desde 10 unidades</p></div></div>
+        <div style="text-align:center; margin-top:20px;"><a href="https://wa.me/5491141796952" class="wholesale-btn">Consultá por Mayorista</a></div>
       </div>
     </div>
 
-    <!-- Medios de Pago -->
     <div class="payment-section">
       <h2 class="section-title">Medios de Pago</h2>
-      <p>Efectivo y Transferencia bancaria</p>
+      <p style="text-align:center">Efectivo y Transferencia bancaria</p>
       <div class="medios-pago">
-        <div class="payment-card">
-          <img src="https://play-lh.googleusercontent.com/EksZavQfabEH5CixFe-MqjT_9fuaBUU7CmR127KkGh9jlEtdIDHhc6L9u2xAYPlnVt8=w240-h480-rw" alt="MercadoPago">
-        </div>
-        <div class="payment-card">
-          <img src="https://media.tycsports.com/files/2023/01/13/524188/cuenta-dni.webp" alt="Cuenta DNI">
-        </div>
-        <div class="payment-card">
-          <img src="https://pbs.twimg.com/profile_images/1609933607006519297/JfQLdV9q_400x400.jpg" alt="Ualá">
-        </div>
-        <div class="payment-card">
-          <img src="https://play-lh.googleusercontent.com/uxHZbrC3ReVDRMOAJuugukR4qlIFt1H3ho8L_67cYhLh9G_P0kUPAJtfX6L22hAxfHv4" alt="Modo">
-        </div>
-        <div class="payment-card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZqkB4fcmuwDTkr6vhoHXjQADZ-ra85PcYkE7Om8F_4-zxcxp6Dopo7w2ENlRTXuONS3E&usqp=CAU" alt="Tarjetas">
-        </div>
+        <div class="payment-card"><img src="https://play-lh.googleusercontent.com/EksZavQfabEH5CixFe-MqjT_9fuaBUU7CmR127KkGh9jlEtdIDHhc6L9u2xAYPlnVt8=w240-h480-rw" alt="MercadoPago"></div>
+        <div class="payment-card"><img src="https://media.tycsports.com/files/2023/01/13/524188/cuenta-dni.webp" alt="Cuenta DNI"></div>
+        <div class="payment-card"><img src="https://pbs.twimg.com/profile_images/1609933607006519297/JfQLdV9q_400x400.jpg" alt="Ualá"></div>
       </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-      <p>© 2025 Racing House - Todos los derechos reservados.</p>
-      <p>Llevá la pasión por los fierros a tu estilo 🏁</p>
-    </footer>
-
   </div>
+
+  <footer>
+    <p>© 2025 Racing House - Todos los derechos reservados.</p>
+    <p>Llevá la pasión por los fierros a tu estilo 🏁</p>
+  </footer>
 </body>
 </html>
