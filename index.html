@@ -24,12 +24,28 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
+      background: #0d0d0d;
       background-image: 
-        radial-gradient(circle at 15% 20%, rgba(255,68,0,0.12) 0%, transparent 40%),
-        radial-gradient(circle at 85% 40%, rgba(255,140,0,0.08) 0%, transparent 40%),
-        radial-gradient(circle at 50% 80%, rgba(255,210,63,0.06) 0%, transparent 40%),
-        linear-gradient(180deg, rgba(255,68,0,0.03) 0%, transparent 50%, rgba(255,140,0,0.03) 100%);
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 50px,
+          rgba(255,210,63,0.03) 50px,
+          rgba(255,210,63,0.03) 100px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 100px,
+          rgba(255,255,255,0.02) 100px,
+          rgba(255,255,255,0.02) 102px
+        ),
+        linear-gradient(
+          180deg,
+          rgba(255,68,0,0.1) 0%,
+          rgba(255,210,63,0.05) 50%,
+          rgba(0,212,255,0.1) 100%
+        );
       color: white;
       line-height: 1.6;
       padding-bottom: 120px;
@@ -44,28 +60,36 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        linear-gradient(0deg, transparent 24%, rgba(255,140,0,0.02) 25%, rgba(255,140,0,0.02) 26%, transparent 27%, transparent 74%, rgba(255,140,0,0.02) 75%, rgba(255,140,0,0.02) 76%, transparent 77%, transparent),
-        linear-gradient(90deg, transparent 24%, rgba(255,140,0,0.02) 25%, rgba(255,140,0,0.02) 26%, transparent 27%, transparent 74%, rgba(255,140,0,0.02) 75%, rgba(255,140,0,0.02) 76%, transparent 77%, transparent);
-      background-size: 80px 80px;
+      background: 
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 100px,
+          rgba(255,210,63,0.02) 100px,
+          rgba(255,210,63,0.02) 200px
+        );
       pointer-events: none;
       z-index: 0;
-      opacity: 0.3;
     }
 
     .header {
       background: 
-        linear-gradient(135deg, rgba(10,10,10,0.98), rgba(30,15,10,0.98)),
-        linear-gradient(135deg, rgba(255,68,0,0.1), rgba(255,140,0,0.1));
+        linear-gradient(135deg, rgba(0,0,0,0.95), rgba(20,20,20,0.95)),
+        repeating-linear-gradient(
+          90deg,
+          #FFD23F 0px,
+          #FFD23F 2px,
+          #000 2px,
+          #000 20px
+        );
       padding: 40px 20px;
       text-align: center;
       box-shadow: 
-        0 4px 30px rgba(255,68,0,0.2),
-        inset 0 -2px 0 rgba(255,140,0,0.3);
+        0 4px 20px rgba(0,0,0,0.8),
+        0 0 100px rgba(255,210,63,0.3);
       position: relative;
       overflow: hidden;
-      border-bottom: 3px solid;
-      border-image: linear-gradient(90deg, #FF4400, #FF8C00, #FFD23F, #FF8C00, #FF4400) 1;
+      border-bottom: 4px solid var(--primary);
     }
 
     .header::before {
@@ -78,10 +102,10 @@
       background: linear-gradient(
         90deg,
         transparent,
-        rgba(255,140,0,0.15),
+        rgba(255,210,63,0.1),
         transparent
       );
-      animation: shine 4s infinite;
+      animation: shine 3s infinite;
     }
 
     @keyframes shine {
@@ -92,21 +116,21 @@
     h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(2.5rem, 10vw, 4.5rem);
-      background: linear-gradient(135deg, #FF4400 0%, #FF8C00 30%, #FFD23F 50%, #FF8C00 70%, #FF4400 100%);
-      background-size: 300% auto;
+      background: linear-gradient(45deg, #FFD23F 0%, #FF8E53 50%, #FFD23F 100%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
       letter-spacing: 8px;
       text-transform: uppercase;
       font-weight: 900;
-      filter: drop-shadow(0 0 30px rgba(255,140,0,0.4));
-      animation: gradient-flow 4s ease infinite;
+      text-shadow: 0 0 30px rgba(255,210,63,0.5);
+      animation: gradient-shift 3s ease infinite;
       position: relative;
       z-index: 1;
     }
 
-    @keyframes gradient-flow {
+    @keyframes gradient-shift {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
@@ -129,19 +153,17 @@
       z-index: 1;
     }
 
+    /* TARJETA DE PEDIDO */
     .order-card {
-      background: 
-        linear-gradient(135deg, rgba(15,10,10,0.85), rgba(20,15,10,0.85)),
-        radial-gradient(circle at top right, rgba(255,68,0,0.05), transparent 60%);
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(20px);
-      border: 2px solid;
-      border-image: linear-gradient(135deg, rgba(255,68,0,0.5), rgba(255,140,0,0.5), rgba(255,210,63,0.5)) 1;
+      border: 2px solid var(--primary);
       border-radius: 20px;
       padding: 30px;
       margin: 30px 0;
       box-shadow: 
-        0 8px 32px rgba(255,68,0,0.15),
-        inset 0 1px 0 rgba(255,140,0,0.1);
+        0 0 30px rgba(255,210,63,0.2),
+        inset 0 0 50px rgba(255,210,63,0.05);
       position: relative;
       overflow: hidden;
     }
@@ -152,20 +174,18 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 3px;
+      height: 4px;
       background: linear-gradient(90deg, 
         transparent,
-        #FF4400,
-        #FF8C00,
-        #FFD23F,
-        #FF8C00,
-        #FF4400,
+        var(--primary),
+        var(--secondary),
+        var(--primary),
         transparent
       );
-      animation: border-slide 3s linear infinite;
+      animation: border-run 2s linear infinite;
     }
 
-    @keyframes border-slide {
+    @keyframes border-run {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
@@ -173,15 +193,13 @@
     .card-title {
       font-size: clamp(1.8rem, 5vw, 2.2rem);
       font-weight: 900;
-      background: linear-gradient(135deg, #FF8C00, #FFD23F, #FF8C00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
       margin-bottom: 25px;
       text-align: center;
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
       letter-spacing: 4px;
-      filter: drop-shadow(0 0 20px rgba(255,140,0,0.3));
+      text-shadow: 0 0 20px rgba(255,210,63,0.5);
     }
 
     .form-group {
@@ -201,8 +219,8 @@
     .form-select, .form-input {
       width: 100%;
       padding: 15px 20px;
-      background: rgba(20,15,10,0.6);
-      border: 2px solid rgba(255,140,0,0.2);
+      background: rgba(255,255,255,0.05);
+      border: 2px solid var(--border);
       border-radius: 15px;
       color: white;
       font-size: 1rem;
@@ -212,9 +230,8 @@
     }
 
     .form-select:focus, .form-input:focus {
-      border-color: #FF8C00;
-      background: rgba(20,15,10,0.8);
-      box-shadow: 0 0 20px rgba(255,140,0,0.2);
+      border-color: var(--primary);
+      background: rgba(255,255,255,0.08);
     }
 
     .form-select option {
@@ -227,6 +244,7 @@
       color: rgba(255,255,255,0.4);
     }
 
+    /* SELECTOR DE TALLES */
     .size-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -246,8 +264,8 @@
     .size-option label {
       display: block;
       padding: 15px;
-      background: rgba(20,15,10,0.6);
-      border: 2px solid rgba(255,140,0,0.2);
+      background: rgba(255,255,255,0.05);
+      border: 2px solid var(--border);
       border-radius: 15px;
       text-align: center;
       cursor: pointer;
@@ -256,31 +274,27 @@
     }
 
     .size-option input[type="radio"]:checked + label {
-      background: linear-gradient(135deg, #FF8C00, #FFD23F);
+      background: var(--primary);
       color: #000;
-      border-color: #FF8C00;
+      border-color: var(--primary);
       transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(255,140,0,0.4);
     }
 
     .size-option label:hover {
-      border-color: #FF8C00;
-      background: rgba(255,140,0,0.1);
+      border-color: var(--primary);
     }
 
     .price-display {
-      background: 
-        linear-gradient(135deg, rgba(255,68,0,0.15), rgba(255,140,0,0.1));
-      border: 2px solid #FF8C00;
+      background: rgba(0, 212, 255, 0.1);
+      border: 2px solid var(--secondary);
       border-radius: 15px;
       padding: 15px;
       text-align: center;
       margin: 15px 0;
       font-size: 1.5rem;
       font-weight: 900;
-      color: #FFD23F;
+      color: var(--secondary);
       font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 15px rgba(255,210,63,0.5);
     }
 
     .add-item-btn {
@@ -307,19 +321,17 @@
       cursor: not-allowed;
     }
 
+    /* CARRITO */
     .cart-section {
-      background: 
-        linear-gradient(135deg, rgba(15,10,10,0.85), rgba(20,15,10,0.85)),
-        radial-gradient(circle at bottom left, rgba(255,68,0,0.05), transparent 60%);
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(20px);
-      border: 2px solid;
-      border-image: linear-gradient(135deg, rgba(255,140,0,0.6), rgba(255,210,63,0.6)) 1;
+      border: 3px solid var(--secondary);
       border-radius: 20px;
       padding: 30px;
       margin: 30px 0;
       box-shadow: 
-        0 8px 32px rgba(255,140,0,0.2),
-        inset 0 1px 0 rgba(255,210,63,0.1);
+        0 0 40px rgba(0,212,255,0.3),
+        inset 0 0 50px rgba(0,212,255,0.05);
       position: relative;
     }
 
@@ -329,8 +341,7 @@
       top: 20px;
       right: 20px;
       font-size: 3rem;
-      opacity: 0.08;
-      filter: grayscale(1);
+      opacity: 0.1;
     }
 
     .cart-header {
@@ -343,23 +354,21 @@
     .cart-title-main {
       font-size: clamp(2rem, 6vw, 2.5rem);
       font-weight: 900;
-      background: linear-gradient(135deg, #FF8C00, #FFD23F);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--secondary);
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
       letter-spacing: 4px;
-      filter: drop-shadow(0 0 20px rgba(255,140,0,0.4));
+      text-shadow: 0 0 20px rgba(0,212,255,0.6);
     }
 
     .cart-count-badge {
-      background: linear-gradient(135deg, #FF8C00, #FFD23F);
+      background: linear-gradient(135deg, var(--secondary), #0099CC);
       color: #000;
       padding: 10px 25px;
       border-radius: 50px;
       font-weight: 900;
       font-size: 1.1rem;
-      box-shadow: 0 4px 15px rgba(255,140,0,0.4);
+      box-shadow: 0 0 20px rgba(0,212,255,0.5);
       font-family: 'Orbitron', sans-serif;
     }
 
@@ -392,9 +401,9 @@
     }
 
     .cart-item:hover {
-      border-color: #FF8C00;
+      border-color: var(--primary);
       transform: translateX(5px);
-      background: rgba(255,140,0,0.08);
+      background: rgba(255,210,63,0.05);
     }
 
     .cart-item-info {
@@ -404,7 +413,7 @@
     .cart-item-name {
       font-weight: 700;
       font-size: 1.2rem;
-      color: #FFD23F;
+      color: var(--primary);
       margin-bottom: 5px;
     }
 
@@ -416,10 +425,9 @@
     .cart-item-price {
       font-weight: 900;
       font-size: 1.3rem;
-      color: #FFD23F;
+      color: var(--secondary);
       margin: 0 20px;
       font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 10px rgba(255,210,63,0.3);
     }
 
     .remove-btn {
@@ -457,13 +465,11 @@
     }
 
     .cart-total-section {
-      background: 
-        linear-gradient(135deg, rgba(255,68,0,0.12), rgba(255,140,0,0.08));
-      border: 2px solid #FF8C00;
+      background: rgba(0, 212, 255, 0.1);
+      border: 2px solid var(--secondary);
       padding: 25px;
       border-radius: 15px;
       margin: 25px 0;
-      box-shadow: 0 4px 20px rgba(255,140,0,0.2);
     }
 
     .cart-total-label {
@@ -476,12 +482,9 @@
     .cart-total-amount {
       font-size: 3rem;
       font-weight: 900;
-      background: linear-gradient(135deg, #FF8C00, #FFD23F, #FF8C00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
       text-align: center;
       font-family: 'Orbitron', sans-serif;
-      filter: drop-shadow(0 0 20px rgba(255,140,0,0.4));
     }
 
     .whatsapp-btn {
@@ -513,6 +516,7 @@
       cursor: not-allowed;
     }
 
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .size-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -532,7 +536,7 @@
         align-self: flex-end;
       }
 
-      .order-card, .cart-section {
+      .order-card, .cart-section, .catalog-links {
         padding: 20px;
       }
     }
@@ -549,19 +553,21 @@
     <h1>🏁 RACING HOUSE 🏁</h1>
     <p class="subtitle">Armá tu pedido y comprá por WhatsApp</p>
     <div style="margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank" style="background: rgba(255,140,0,0.2); border: 2px solid #FF8C00; color: #FFD23F; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; text-shadow: 0 0 10px rgba(255,210,63,0.3);">
+      <a href="https://drive.google.com/drive/folders/1moQ7TF055yr1naP1N-xcKQBDAQ40p7g4" target="_blank" style="background: rgba(255,210,63,0.2); border: 2px solid var(--primary); color: var(--primary); padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s;">
         🏎️ CATÁLOGO AUTOS
       </a>
-      <a href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank" style="background: rgba(255,210,63,0.2); border: 2px solid #FFD23F; color: #FFD23F; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; text-shadow: 0 0 10px rgba(255,210,63,0.3);">
+      <a href="https://drive.google.com/drive/folders/1vI8eLaNyPSgD9zJ6JLYydA8cUOZt2K4j" target="_blank" style="background: rgba(0,212,255,0.2); border: 2px solid var(--secondary); color: var(--secondary); padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s;">
         🏍️ CATÁLOGO MOTOS
       </a>
-      <a href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank" style="background: rgba(255,68,0,0.2); border: 2px solid #FF4400; color: #FFD23F; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; text-shadow: 0 0 10px rgba(255,210,63,0.3);">
+      <a href="https://drive.google.com/drive/folders/12y5oTpftkVI2nM6zpVIvpA-KD-Disumj" target="_blank" style="background: rgba(255,68,0,0.2); border: 2px solid #FF4436; color: #FF6B6B; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s;">
         🧥 BUZOS (MAYORISTA)
       </a>
     </div>
   </div>
 
   <div class="container">
+
+    <!-- FORMULARIO DE PEDIDO -->
     <div class="order-card">
       <h2 class="card-title">🛍️ ARMÁ TU PEDIDO</h2>
       
@@ -580,7 +586,7 @@
       <div id="modelSection" style="display: none;">
         <div class="form-group">
           <label class="form-label">2️⃣ ¿Qué modelo?</label>
-          <input type="text" class="form-input" id="modelName" placeholder="Ej: Ferrari, BMW, Yamaha, Kawasaki..." oninput="checkFormComplete()">
+          <input type="text" class="form-input" id="modelName" placeholder="Ej: Ferrari, BMW, Yamaha, Kawasaki..." oninput="updateForm()">
           <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 8px;">💡 Escribí el modelo que viste en el catálogo</p>
         </div>
 
@@ -599,6 +605,7 @@
       </div>
     </div>
 
+    <!-- CARRITO -->
     <div class="cart-section">
       <div class="cart-header">
         <h2 class="cart-title-main">🛒 TU PEDIDO</h2>
@@ -626,52 +633,302 @@
       </div>
     </div>
 
-    <div class="order-card" style="border-image: linear-gradient(135deg, rgba(255,140,0,0.6), rgba(255,210,63,0.6)) 1;">
+    <!-- VENTA POR MAYOR -->
+    <div class="order-card" style="border: 2px solid var(--secondary);">
       <h2 class="card-title">📦 VENTA POR MAYOR</h2>
       
       <div style="text-align: center; margin-bottom: 25px; color: rgba(255,255,255,0.9); font-size: 1.1rem;">
         <p style="margin-bottom: 15px;">¿Sos revendedor o tenés un local? Consultá nuestros precios especiales:</p>
       </div>
 
-      <div style="background: rgba(255,140,0,0.05); border-radius: 15px; padding: 20px; margin: 20px 0; border: 1px solid rgba(255,140,0,0.2);">
+      <div style="background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px; margin: 20px 0;">
         <div style="display: grid; gap: 15px;">
           
-          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,140,0,0.1); border-radius: 12px; border: 1px solid rgba(255,140,0,0.3);">
+          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(0,212,255,0.1); border-radius: 12px;">
             <span style="font-size: 2rem;">🎽</span>
             <div style="flex: 1;">
-              <div style="font-weight: 700; color: #FFD23F; font-size: 1.1rem; margin-bottom: 5px;">PACK 10 REMERAS</div>
+              <div style="font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 5px;">PACK 10 REMERAS</div>
               <div style="color: rgba(255,255,255,0.8); font-size: 1rem;">$100.000 (Ahorrás $20.000)</div>
-              <div style="color: #FF8C00; font-size: 0.9rem; margin-top: 5px; font-weight: 600;">
+              <div style="color: rgba(255,210,63,0.9); font-size: 0.9rem; margin-top: 5px; font-weight: 600;">
                 ⚠️ Solo para talles XS - S - M - L - XL
               </div>
             </div>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,140,0,0.1); border-radius: 12px; border: 1px solid rgba(255,140,0,0.3);">
+          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(0,212,255,0.1); border-radius: 12px;">
             <span style="font-size: 2rem;">🧥</span>
             <div style="flex: 1;">
-              <div style="font-weight: 700; color: #FFD23F; font-size: 1.1rem; margin-bottom: 5px;">BUZOS CON CAPUCHA</div>
+              <div style="font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 5px;">BUZOS CON CAPUCHA</div>
               <div style="color: rgba(255,255,255,0.8);">$20.000 c/u - Compra mínima 4 unidades</div>
             </div>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,140,0,0.1); border-radius: 12px; border: 1px solid rgba(255,140,0,0.3);">
+          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(0,212,255,0.1); border-radius: 12px;">
             <span style="font-size: 2rem;">🧥</span>
             <div style="flex: 1;">
-              <div style="font-weight: 700; color: #FFD23F; font-size: 1.1rem; margin-bottom: 5px;">BUZOS CUELLO REDONDO</div>
+              <div style="font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 5px;">BUZOS CUELLO REDONDO</div>
               <div style="color: rgba(255,255,255,0.8);">$18.000 c/u - Compra mínima 4 unidades</div>
             </div>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,140,0,0.1); border-radius: 12px; border: 1px solid rgba(255,140,0,0.3);">
+          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(0,212,255,0.1); border-radius: 12px;">
             <span style="font-size: 2rem;">🏷️</span>
             <div style="flex: 1;">
-              <div style="font-weight: 700; color: #FFD23F; font-size: 1.1rem; margin-bottom: 5px;">PACK MIXTO</div>
+              <div style="font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 5px;">PACK MIXTO</div>
               <div style="color: rgba(255,255,255,0.8);">5 remeras + 3 buzos x $110.000</div>
             </div>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,68,0,0.15); border-radius: 12px; border: 2px solid #FF4400;">
+          <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,210,63,0.1); border-radius: 12px; border: 2px solid var(--primary);">
             <span style="font-size: 2rem;">🎯</span>
             <div style="flex: 1;">
-              <div style="font-weight: 700; color: #FFD23F
+              <div style="font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 5px;">PEDIDO PERSONALIZADO</div>
+              <div style="color: rgba(255,255,255,0.8);">Desde 10 unidades - Estampamos tu logo</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="whatsapp-btn" onclick="sendWholesaleWhatsApp()">
+        <span style="font-size: 2rem;">📱</span>
+        <span>CONSULTAR VENTA POR MAYOR</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    function sendWholesaleWhatsApp() {
+      const message = `¡Hola Racing House! 👋
+
+Quiero consultar por *VENTA POR MAYOR*
+
+Estoy interesado en:
+□ Pack 10 remeras x $100.000
+□ Buzos con capucha x $20.000 c/u (mín. 4)
+□ Buzos cuello redondo x $18.000 c/u (mín. 4)
+□ Pack mixto (5 remeras + 3 buzos) x $110.000
+□ Pedido personalizado con mi logo
+
+¿Podrían enviarme más información sobre:
+✅ Modelos disponibles
+✅ Condiciones de venta
+✅ Tiempos de entrega
+✅ Forma de pago
+
+¡Gracias! 🏁`;
+
+      const phone = '5491141796952';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+
+  <script>
+    const prices = {
+      'XS': 22000, 'S': 22000, 'M': 22000, 'L': 22000, 'XL': 22000,
+      'XXL': 24200, 'XXXL': 25600, 'XXXXL': 27000
+    };
+
+    const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL'];
+    let cart = [];
+    let currentSelection = {
+      type: '',
+      model: '',
+      color: '',
+      size: '',
+      price: 0
+    };
+
+    function updateForm() {
+      const type = document.getElementById('productType').value;
+      const modelSection = document.getElementById('modelSection');
+      const sizeSelector = document.getElementById('sizeSelector');
+      const priceDisplay = document.getElementById('priceDisplay');
+      const addBtn = document.getElementById('addBtn');
+
+      if (!type) {
+        modelSection.style.display = 'none';
+        return;
+      }
+
+      modelSection.style.display = 'block';
+      currentSelection.type = type;
+
+      // Generar selector de talles para remeras
+      sizeSelector.innerHTML = sizes.map(size => `
+        <div class="size-option">
+          <input type="radio" name="size" id="size-${size}" value="${size}" onchange="selectSize('${size}')">
+          <label for="size-${size}">${size}<br><small>${formatPrice(prices[size])}</small></label>
+        </div>
+      `).join('');
+
+      checkFormComplete();
+    }
+
+    function selectSize(size) {
+      currentSelection.size = size;
+      currentSelection.price = prices[size];
+
+      document.getElementById('priceDisplay').style.display = 'block';
+      document.getElementById('currentPrice').textContent = `${formatPrice(currentSelection.price)}`;
+      
+      checkFormComplete();
+    }
+
+    function checkFormComplete() {
+      const model = document.getElementById('modelName').value.trim();
+      const color = document.getElementById('colorSelect').value;
+      const addBtn = document.getElementById('addBtn');
+      
+      currentSelection.model = model;
+      currentSelection.color = color;
+
+      if (currentSelection.type && currentSelection.model && currentSelection.color && currentSelection.size && currentSelection.price > 0) {
+        addBtn.disabled = false;
+      } else {
+        addBtn.disabled = true;
+      }
+    }
+
+    function addToCart() {
+      if (!currentSelection.type || !currentSelection.model || !currentSelection.color || !currentSelection.size) return;
+
+      const typeNames = {
+        'remera_auto': 'Remera de Auto',
+        'remera_moto': 'Remera de Moto'
+      };
+
+      cart.push({
+        id: Date.now(),
+        type: typeNames[currentSelection.type],
+        model: currentSelection.model,
+        color: currentSelection.color,
+        size: currentSelection.size,
+        price: currentSelection.price
+      });
+
+      updateCartDisplay();
+      resetForm();
+
+      // Feedback visual mejorado
+      const btn = document.getElementById('addBtn');
+      const originalText = btn.innerHTML;
+      btn.style.background = 'linear-gradient(135deg, #25D366, #128C7E)';
+      btn.innerHTML = '✅ ¡AGREGADO AL CARRITO!';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = 'linear-gradient(135deg, var(--primary), #FF8E53)';
+      }, 1500);
+
+      // Scroll suave al carrito
+      document.getElementById('cartItems').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'nearest' 
+      });
+    }
+
+    function resetForm() {
+      // Solo limpiar el modelo, color y talle, mantener el tipo seleccionado
+      document.getElementById('modelName').value = '';
+      document.getElementById('colorSelect').value = '';
+      document.querySelectorAll('input[name="size"]').forEach(radio => {
+        radio.checked = false;
+      });
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.classList.remove('selected');
+      });
+      document.getElementById('priceDisplay').style.display = 'none';
+      currentSelection.model = '';
+      currentSelection.color = '';
+      currentSelection.size = '';
+      currentSelection.price = 0;
+      
+      // Mantener focus en el input del modelo para seguir agregando
+      document.getElementById('modelName').focus();
+      
+      // Actualizar estado del botón
+      document.getElementById('addBtn').disabled = true;
+    }
+
+    function removeFromCart(itemId) {
+      cart = cart.filter(item => item.id !== itemId);
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const cartItems = document.getElementById('cartItems');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotal = document.getElementById('cartTotal');
+      const cartTotalSection = document.getElementById('cartTotalSection');
+
+      cartCount.textContent = `${cart.length} ${cart.length === 1 ? 'item' : 'items'}`;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = `
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <p>Tu carrito está vacío</p>
+            <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.7;">Agregá productos arriba para comenzar</p>
+          </div>
+        `;
+        cartTotalSection.style.display = 'none';
+        return;
+      }
+
+      cartTotalSection.style.display = 'block';
+
+      cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.model}</div>
+            <div class="cart-item-details">${item.type} • <strong style="color: var(--primary);">Color: ${item.color}</strong> • Talle ${item.size}</div>
+          </div>
+          <div class="cart-item-price">${formatPrice(item.price)}</div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">×</button>
+        </div>
+      `).join('');
+
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      cartTotal.textContent = `$${formatPrice(total)}`;
+    }
+
+    function sendToWhatsApp() {
+      if (cart.length === 0) return;
+
+      let message = '¡Hola Racing House! 👋\n\n';
+      message += 'Quiero realizar el siguiente pedido:\n\n';
+      message += '📦 *MI PEDIDO:*\n';
+      
+      cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.model}\n`;
+        message += `   • ${item.type}\n`;
+        message += `   • Talle: ${item.size}\n`;
+        message += `   • Precio: $${item.price.toLocaleString('es-AR')}\n\n`;
+      });
+
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      message += `💰 *TOTAL: $${total.toLocaleString('es-AR')}*\n\n`;
+      message += '¿Podrías confirmarme:\n';
+      message += '✅ Disponibilidad de stock\n';
+      message += '✅ Costo de envío a mi localidad\n';
+      message += '✅ Tiempo de entrega\n\n';
+      message += '¡Gracias! 🏁';
+
+      const phone = '5491141796952';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    function formatPrice(price) {
+      return price.toLocaleString('es-AR');
+    }
+
+    // Inicializar
+    updateCartDisplay();
+  </script>
+</body>
+</html>
