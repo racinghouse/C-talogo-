@@ -129,7 +129,6 @@
       z-index: 1;
     }
 
-    /* TARJETA DE PEDIDO */
     .order-card {
       background: 
         linear-gradient(135deg, rgba(15,10,10,0.85), rgba(20,15,10,0.85)),
@@ -228,7 +227,6 @@
       color: rgba(255,255,255,0.4);
     }
 
-    /* SELECTOR DE TALLES */
     .size-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -309,7 +307,6 @@
       cursor: not-allowed;
     }
 
-    /* CARRITO */
     .cart-section {
       background: 
         linear-gradient(135deg, rgba(15,10,10,0.85), rgba(20,15,10,0.85)),
@@ -516,7 +513,6 @@
       cursor: not-allowed;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       .size-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -536,7 +532,7 @@
         align-self: flex-end;
       }
 
-      .order-card, .cart-section, .catalog-links {
+      .order-card, .cart-section {
         padding: 20px;
       }
     }
@@ -566,8 +562,6 @@
   </div>
 
   <div class="container">
-
-    <!-- FORMULARIO DE PEDIDO -->
     <div class="order-card">
       <h2 class="card-title">🛍️ ARMÁ TU PEDIDO</h2>
       
@@ -586,7 +580,7 @@
       <div id="modelSection" style="display: none;">
         <div class="form-group">
           <label class="form-label">2️⃣ ¿Qué modelo?</label>
-          <input type="text" class="form-input" id="modelName" placeholder="Ej: Ferrari, BMW, Yamaha, Kawasaki..." oninput="updateForm()">
+          <input type="text" class="form-input" id="modelName" placeholder="Ej: Ferrari, BMW, Yamaha, Kawasaki..." oninput="checkFormComplete()">
           <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 8px;">💡 Escribí el modelo que viste en el catálogo</p>
         </div>
 
@@ -605,7 +599,6 @@
       </div>
     </div>
 
-    <!-- CARRITO -->
     <div class="cart-section">
       <div class="cart-header">
         <h2 class="cart-title-main">🛒 TU PEDIDO</h2>
@@ -633,7 +626,6 @@
       </div>
     </div>
 
-    <!-- VENTA POR MAYOR -->
     <div class="order-card" style="border-image: linear-gradient(135deg, rgba(255,140,0,0.6), rgba(255,210,63,0.6)) 1;">
       <h2 class="card-title">📦 VENTA POR MAYOR</h2>
       
@@ -682,253 +674,4 @@
           <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,68,0,0.15); border-radius: 12px; border: 2px solid #FF4400;">
             <span style="font-size: 2rem;">🎯</span>
             <div style="flex: 1;">
-              <div style="font-weight: 700; color: #FFD23F; font-size: 1.1rem; margin-bottom: 5px;">PEDIDO PERSONALIZADO</div>
-              <div style="color: rgba(255,255,255,0.8);">Desde 10 unidades - Estampamos tu logo</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <button class="whatsapp-btn" onclick="sendWholesaleWhatsApp()">
-        <span style="font-size: 2rem;">📱</span>
-        <span>CONSULTAR VENTA POR MAYOR</span>
-      </button>
-    </div>
-
-  </div>
-
-  <script>
-    function sendWholesaleWhatsApp() {
-      const message = `¡Hola Racing House! 👋
-
-Quiero consultar por *VENTA POR MAYOR*
-
-Estoy interesado en:
-□ Pack 10 remeras x $100.000
-□ Buzos con capucha x $20.000 c/u (mín. 4)
-□ Buzos cuello redondo x $18.000 c/u (mín. 4)
-□ Pack mixto (5 remeras + 3 buzos) x $110.000
-□ Pedido personalizado con mi logo
-
-¿Podrían enviarme más información sobre:
-✅ Modelos disponibles
-✅ Condiciones de venta
-✅ Tiempos de entrega
-✅ Forma de pago
-
-¡Gracias! 🏁`;
-
-      const phone = '5491141796952';
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-  </script>
-
-  <script>
-    const prices = {
-      'XS': $22.000, 'S': $22.000, 'M': $22000, 'L': $22000, 'XL': $22000,
-      'XXL': $24.200, 'XXXL': $25.600, 'XXXXL': $27.000
-    };
-
-    const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL'];
-    let cart = [];
-    let currentSelection = {
-      type: '',
-      model: '',
-      color: '',
-      size: '',
-      price: 0
-    };
-
-    function updateForm() {
-      const type = document.getElementById('productType').value;
-      const modelSection = document.getElementById('modelSection');
-      const sizeSelector = document.getElementById('sizeSelector');
-      const priceDisplay = document.getElementById('priceDisplay');
-      const addBtn = document.getElementById('addBtn');
-
-      if (!type) {
-        modelSection.style.display = 'none';
-        return;
-      }
-
-      modelSection.style.display = 'block';
-      currentSelection.type = type;
-
-      // Generar selector de talles para remeras
-      sizeSelector.innerHTML = sizes.map(size => `
-        <div class="size-option">
-          <input type="radio" name="size" id="size-${size}" value="${size}" onchange="selectSize('${size}')">
-          <label for="size-${size}">${size}<br><small>${formatPrice(prices[size])}</small></label>
-        </div>
-      `).join('');
-
-      checkFormComplete();
-    }
-
-    function selectSize(size) {
-      currentSelection.size = size;
-      currentSelection.price = prices[size];
-
-      document.getElementById('priceDisplay').style.display = 'block';
-      document.getElementById('currentPrice').textContent = `${formatPrice(currentSelection.price)}`;
-      
-      checkFormComplete();
-    }
-
-    function checkFormComplete() {
-      const model = document.getElementById('modelName').value.trim();
-      const color = document.getElementById('colorSelect').value;
-      const addBtn = document.getElementById('addBtn');
-      
-      currentSelection.model = model;
-      currentSelection.color = color;
-
-      if (currentSelection.type && currentSelection.model && currentSelection.color && currentSelection.size && currentSelection.price > 0) {
-        addBtn.disabled = false;
-      } else {
-        addBtn.disabled = true;
-      }
-    }
-
-    function addToCart() {
-      if (!currentSelection.type || !currentSelection.model || !currentSelection.color || !currentSelection.size) return;
-
-      const typeNames = {
-        'remera_auto': 'Remera de Auto',
-        'remera_moto': 'Remera de Moto'
-      };
-
-      cart.push({
-        id: Date.now(),
-        type: typeNames[currentSelection.type],
-        model: currentSelection.model,
-        color: currentSelection.color,
-        size: currentSelection.size,
-        price: currentSelection.price
-      });
-
-      updateCartDisplay();
-      resetForm();
-
-      // Feedback visual mejorado
-      const btn = document.getElementById('addBtn');
-      const originalText = btn.innerHTML;
-      btn.style.background = 'linear-gradient(135deg, #25D366, #128C7E)';
-      btn.innerHTML = '✅ ¡AGREGADO AL CARRITO!';
-      btn.disabled = true;
-      
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.background = 'linear-gradient(135deg, var(--primary), #FF8E53)';
-      }, 1500);
-
-      // Scroll suave al carrito
-      document.getElementById('cartItems').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'nearest' 
-      });
-    }
-
-    function resetForm() {
-      // Solo limpiar el modelo, color y talle, mantener el tipo seleccionado
-      document.getElementById('modelName').value = '';
-      document.getElementById('colorSelect').value = '';
-      document.querySelectorAll('input[name="size"]').forEach(radio => {
-        radio.checked = false;
-      });
-      document.querySelectorAll('.size-btn').forEach(btn => {
-        btn.classList.remove('selected');
-      });
-      document.getElementById('priceDisplay').style.display = 'none';
-      currentSelection.model = '';
-      currentSelection.color = '';
-      currentSelection.size = '';
-      currentSelection.price = 0;
-      
-      // Mantener focus en el input del modelo para seguir agregando
-      document.getElementById('modelName').focus();
-      
-      // Actualizar estado del botón
-      document.getElementById('addBtn').disabled = true;
-    }
-
-    function removeFromCart(itemId) {
-      cart = cart.filter(item => item.id !== itemId);
-      updateCartDisplay();
-    }
-
-    function updateCartDisplay() {
-      const cartItems = document.getElementById('cartItems');
-      const cartCount = document.getElementById('cartCount');
-      const cartTotal = document.getElementById('cartTotal');
-      const cartTotalSection = document.getElementById('cartTotalSection');
-
-      cartCount.textContent = `${cart.length} ${cart.length === 1 ? 'item' : 'items'}`;
-
-      if (cart.length === 0) {
-        cartItems.innerHTML = `
-          <div class="cart-empty">
-            <div class="cart-empty-icon">🛒</div>
-            <p>Tu carrito está vacío</p>
-            <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.7;">Agregá productos arriba para comenzar</p>
-          </div>
-        `;
-        cartTotalSection.style.display = 'none';
-        return;
-      }
-
-      cartTotalSection.style.display = 'block';
-
-      cartItems.innerHTML = cart.map(item => `
-        <div class="cart-item">
-          <div class="cart-item-info">
-            <div class="cart-item-name">${item.model}</div>
-            <div class="cart-item-details">${item.type} • <strong style="color: #FF8C00;">Color: ${item.color}</strong> • Talle ${item.size}</div>
-          </div>
-          <div class="cart-item-price">${formatPrice(item.price)}</div>
-          <button class="remove-btn" onclick="removeFromCart(${item.id})">×</button>
-        </div>
-      `).join('');
-
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      cartTotal.textContent = `$${formatPrice(total)}`;
-    }
-
-    function sendToWhatsApp() {
-      if (cart.length === 0) return;
-
-      let message = '¡Hola Racing House! 👋\n\n';
-      message += 'Quiero realizar el siguiente pedido:\n\n';
-      message += '📦 *MI PEDIDO:*\n';
-      
-      cart.forEach((item, index) => {
-        message += `${index + 1}. ${item.model}\n`;
-        message += `   • ${item.type}\n`;
-        message += `   • Talle: ${item.size}\n`;
-        message += `   • Precio: $${item.price.toLocaleString('es-AR')}\n\n`;
-      });
-
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      message += `💰 *TOTAL: $${total.toLocaleString('es-AR')}*\n\n`;
-      message += '¿Podrías confirmarme:\n';
-      message += '✅ Disponibilidad de stock\n';
-      message += '✅ Costo de envío a mi localidad\n';
-      message += '✅ Tiempo de entrega\n\n';
-      message += '¡Gracias! 🏁';
-
-      const phone = '5491141796952';
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-
-    function formatPrice(price) {
-      return price.toLocaleString('es-AR');
-    }
-
-    // Inicializar
-    updateCartDisplay();
-  </script>
-</body>
-</html>
+              <div style="font-weight: 700; color: #FFD23F
